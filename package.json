@@ -13,7 +13,8 @@
     "hapi-ioredis": "3.0.0",
     "nodemon": "^1.17.4",
     "request": "^2.87.0",
-    "request-promise": "4.2.2"
+    "request-promise": "4.2.2",
+    "soap": "^0.24.0"
   },
   "devDependencies": {
     "code": "3.0.1",

@@ -8,14 +8,7 @@ const Routes = require("./routes/routes");
 const hapiRedis = require("hapi-ioredis");
 
 // plugins
-const hapiPlugins = [
-  {
-    register: hapiRedis,
-    options: {
-      url: "redis://127.0.0.1:6379"
-    }
-  }
-];
+const hapiPlugins = [];
 
 const server = new hapi.Server();
 
@@ -27,22 +20,19 @@ console.log(serverPort);
 server.connection({ port: serverPort });
 
 // ciclo de peticion
-server.ext("onPreHandler", (request, reply) => {
-  // console.log('On PreHandler');
-  // console.log(`${'lista'}:${process.env.NODE_ENV}`, request.params.idService);
-  request.redis
-    .sismember(`${"lista"}:${process.env.NODE_ENV}`, request.params.idService)
-    .then(res => {
-      console.log(`valor:${res},${request.params.idService}`);
-      const valor = res === 1;
-      if (valor) {
-        return reply.continue();
-      }
-      return reply({ data: "Servicio no existe" });
-    })
-    .catch(err => {
-      console.log(`Error:${err}`);
-    });
+server.ext("onPreResponse", (request, reply) => {
+  if (request.response != null && request.response.header != null) {
+    request.response.header("Access-Control-Allow-Origin", "*");
+    request.response.header(
+      "Access-Control-Allow-Headers",
+      "user-agent, Content-Type, Accept, token"
+    );
+    request.response.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE"
+    );
+  }
+  reply.continue();
 });
 
 // registrar plugins de hapi
