@@ -1,0 +1,8 @@
+este proyecto es consumido por Clase1NodeAvanzado2018 (proxy)
+
+
+para pruebas test del proyecto crear los .js de test por ejemplo test/func.js 
+y para ejecutarlas 
+$ npm test
+
+

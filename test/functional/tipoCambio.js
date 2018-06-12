@@ -12,21 +12,17 @@ const { describe, it, after } = lab;
 
 const server = require("../../app");
 
-const body = {
-  par1: "mi parametro 1",
-  par2: "mi parametro 2",
-  wsdl: "http://www.banguat.gob.gt/variables/ws/TipoCambio.asmx?WSDL"
-};
+const body = require("../../mongo/tipoCambio").TipoCambio;
 
 // *** para hacer pruebas unitarias debe haberse programado modularmente
 // si programamos tod modularmente, en las pruebas no deberian haber problemas
-describe("Primera prueba funcional func.js", () => {
+describe("Instalacion de esquema para tipo cambio", () => {
   // it indica inicio de mis pruebas
-  it("Prueba POST /", done => {
+  it("Prueba POST /install TipoCambioDia", done => {
     server.inject(
       {
         method: "POST",
-        url: "/1",
+        url: "/install",
         headers: {
           "Content-type": "application/json"
         },
@@ -34,8 +30,8 @@ describe("Primera prueba funcional func.js", () => {
       },
       res => {
         console.log(res.result);
-        expect(res.result.parametros).to.be.exist();
-        expect(res.result.parametros.par1).to.be.equal("mi parametro 1");
+        expect(res.result).to.be.exist(200);
+        //expect(res.result.parametros.par1).to.be.equal("mi parametro 1");
       }
     );
     done();

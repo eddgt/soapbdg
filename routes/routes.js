@@ -24,6 +24,13 @@ module.exports = {
       config: {
         handler: Handlers.testHand
       }
+    },
+    {
+      method: "POST",
+      path: "/install",
+      config: {
+        handler: Handlers.protocolHandler
+      }
     }
   ]
 };
