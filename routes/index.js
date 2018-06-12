@@ -1,12 +1,12 @@
-/* const routes = require('./routes');
-const pkg = require('../package.json');
+const indexHand = require("./indexHand");
+const postHand = require("./postHand");
+const testHand = require("./testHand");
 
-exports.register = (server, options, next) => {
-  server.route(routes(options));
-  next();
-};
+const testF = (number1, number2) => number1 + number2;
 
-exports.register.attributes = {
-  pkg,
+module.exports = {
+  indexHand,
+  postHand,
+  testF,
+  testHand
 };
-*/

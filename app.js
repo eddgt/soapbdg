@@ -1,4 +1,5 @@
 require("dotenv").config();
+const db = require("./lib/db").db;
 
 const hapi = require("hapi");
 // Registro de routes en el server
@@ -18,6 +19,9 @@ const serverPort = process.env[`PORT_${process.env.NODE_ENV.toUpperCase()}`];
 console.log(`PORT_${process.env.NODE_ENV.toUpperCase()}`);
 console.log(serverPort);
 server.connection({ port: serverPort });
+
+// Defino ruta
+server.route(Routes.rutas);
 
 // ciclo de peticion
 server.ext("onPreResponse", (request, reply) => {
@@ -45,9 +49,6 @@ server.register(hapiPlugins, err => {
     console.log(`Servidor levantado en: ${server.info.uri}`);
   });
 });
-
-// Defino ruta
-server.route(Routes.rutas);
 
 // exportar nuestro server
 module.exports = server;

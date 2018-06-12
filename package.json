@@ -14,7 +14,9 @@
     "nodemon": "^1.17.4",
     "request": "^2.87.0",
     "request-promise": "4.2.2",
-    "soap": "^0.24.0"
+    "soap": "^0.24.0",
+    "mongoose": "4.11.14",
+    "bluebird": "3.5.1"
   },
   "devDependencies": {
     "code": "3.0.1",

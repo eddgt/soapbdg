@@ -17,6 +17,13 @@ module.exports = {
       config: {
         handler: Handlers.postHand
       }
+    },
+    {
+      method: "POST",
+      path: "/test",
+      config: {
+        handler: Handlers.testHand
+      }
     }
   ]
 };
